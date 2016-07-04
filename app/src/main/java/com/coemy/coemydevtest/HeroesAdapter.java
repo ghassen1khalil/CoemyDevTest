@@ -1,4 +1,4 @@
-package com.coemy.coemydevtest.Utils;
+package com.coemy.coemydevtest;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,8 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.coemy.coemydevtest.Model.Hero;
-import com.coemy.coemydevtest.R;
 import java.util.ArrayList;
 
 /**
@@ -19,10 +17,10 @@ import java.util.ArrayList;
 
 public class HeroesAdapter extends ArrayAdapter<Hero> {
 
-    private Context context;
+    private static LayoutInflater inflater = null;
     int layoutResourceId;
+    private Context context;
     private ArrayList<Hero> lHero;
-    private static LayoutInflater inflater = null ;
 
     public HeroesAdapter (Context context, int layoutResourceId, ArrayList<Hero> lHero) {
         super(context, layoutResourceId, lHero);
@@ -66,6 +64,7 @@ public class HeroesAdapter extends ArrayAdapter<Hero> {
             holder.txtTitle = (TextView)row.findViewById(R.id.txtTitle);
             holder.txtIntro = (TextView) row.findViewById(R.id.txtIntro);
             holder.txtYear = (TextView) row.findViewById(R.id.txtYear);
+            holder.txtText = (TextView) row.findViewById(R.id.txtText);
 
             row.setTag(holder);
         }
@@ -79,6 +78,8 @@ public class HeroesAdapter extends ArrayAdapter<Hero> {
         holder.txtIntro.setText(hero.getInto());
         holder.txtYear.setText(hero.getYear());
         holder.imgIcon.setImageResource(hero.getImage());
+        holder.txtText.setText(hero.getText());
+        holder.txtText.setVisibility(View.GONE);
 
         return row;
     }
@@ -89,6 +90,7 @@ public class HeroesAdapter extends ArrayAdapter<Hero> {
         TextView txtTitle;
         TextView txtIntro;
         TextView txtYear;
+        TextView txtText;
     }
 }
 

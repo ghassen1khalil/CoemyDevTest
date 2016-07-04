@@ -1,10 +1,12 @@
-package com.coemy.coemydevtest.Model;
+package com.coemy.coemydevtest;
+
+import java.io.Serializable;
 
 /**
  * Created by ASUS on 03/07/2016.
  */
 
-public class Hero {
+public class Hero implements Serializable {
 
     private String title;
     private String into;
@@ -14,6 +16,12 @@ public class Hero {
     private int image;
 
     public Hero() {
+    }
+
+    public Hero(String title, String into, String text) {
+        this.title = title;
+        this.into = into;
+        this.text = text;
     }
 
     public String getTitle() {

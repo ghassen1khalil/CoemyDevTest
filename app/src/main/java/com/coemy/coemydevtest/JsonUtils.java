@@ -1,19 +1,15 @@
-package com.coemy.coemydevtest.Utils;
+package com.coemy.coemydevtest;
 
-import android.app.Activity;
-import android.support.annotation.Nullable;
-
-import com.coemy.coemydevtest.Model.Hero;
-import com.coemy.coemydevtest.R;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
+import android.content.Context;
+import android.content.res.AssetManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 
 /**
  * Created by ASUS on 02/07/2016.
@@ -22,23 +18,13 @@ import org.json.JSONObject;
 public class JsonUtils {
     private static final String TAG = "JsonUtils";
 
-    public static ArrayList<Hero> loadJSONFromAsset(Activity activity, String fileName){
-
-        HashMap<String, Integer> HEROES_IMAGES = new HashMap<String, Integer>(){{
-            put("Black Panther", R.drawable.black_panther);
-            put("Captain America", R.drawable.captain_america);
-            put("Hulk", R.drawable.hulk);
-            put("Spiderman", R.drawable.spiderman);
-            put("Thor", R.drawable.thor);
-            put("Wolverine", R.drawable.wolverine);
-        }};
-
-        //int resId = HEROES_IMAGES.get("Hulk");
-
+    public static ArrayList<Hero> loadJSONFromAsset(Context context, String fileName) {
         //Reading Json file from assets folder
         String json = null;
+        AssetManager assetManager = context.getResources().getAssets();
+        InputStream is = null;
         try {
-            InputStream is = activity.getAssets().open(fileName);
+            is = assetManager.open(fileName);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -64,7 +50,7 @@ public class JsonUtils {
                 mHero.setText(text);
                 mHero.setYear(year);
                 mHero.setColor(color);
-                mHero.setImage(HEROES_IMAGES.get(title));
+                mHero.setImage(ImageUtils.HEROES_IMAGES.get(title));
 
                 herosList.add(mHero);
             }
