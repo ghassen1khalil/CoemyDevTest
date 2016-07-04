@@ -64,6 +64,8 @@ public class HeroesAdapter extends ArrayAdapter<Hero> {
             holder = new HeroHolder();
             holder.imgIcon = (ImageView)row.findViewById(R.id.imgIcon);
             holder.txtTitle = (TextView)row.findViewById(R.id.txtTitle);
+            holder.txtIntro = (TextView) row.findViewById(R.id.txtIntro);
+            holder.txtYear = (TextView) row.findViewById(R.id.txtYear);
 
             row.setTag(holder);
         }
@@ -74,6 +76,8 @@ public class HeroesAdapter extends ArrayAdapter<Hero> {
 
         Hero hero = lHero.get(position);
         holder.txtTitle.setText(hero.getTitle());
+        holder.txtIntro.setText(hero.getInto());
+        holder.txtYear.setText(hero.getYear());
         holder.imgIcon.setImageResource(hero.getImage());
 
         return row;
@@ -83,6 +87,8 @@ public class HeroesAdapter extends ArrayAdapter<Hero> {
     {
         ImageView imgIcon;
         TextView txtTitle;
+        TextView txtIntro;
+        TextView txtYear;
     }
 }
 
